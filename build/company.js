@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -20,8 +20,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -68,16 +68,16 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies', __assign(__assign({}, search), { countries: search.countries.join(',').toUpperCase() }))];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                            return [2 /*return*/, {
+                        if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
+                            if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                                return [2 /*return*/, {
                                     success: false,
                                     error: {
                                         type: 'creditsafe',
                                         error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
                                     },
                                 }];
-                        }
+                            }
                         console.log(_e.label);
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
@@ -96,19 +96,28 @@ var CompanyApi = /** @class */ (function () {
             var resp;
             return __generator(this, function (_e) {
                 switch (_e.label) {
-                    case 0: return [4 /*yield*/, this.client.fire('GET', "companies/" + connectId, options)];
+                    case 0: {
+                        let url = "companies/" + connectId + "?1=1";
+                        let lang = options?.language || "";
+                        if (lang) {
+                            url += '&language=' + lang;
+                            if ("de" === lang || "DE" === lang)
+                                url += '&customData=de_reason_code::1';
+                        }
+                        return [4 /*yield*/, this.client.fire('GET', url, options)];
+                    }
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                            return [2 /*return*/, {
+                        if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
+                            if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                                return [2 /*return*/, {
                                     success: false,
                                     error: {
                                         type: 'creditsafe',
                                         error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
                                     },
                                 }];
-                        }
+                            }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
             });
@@ -128,16 +137,16 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies/searchcriteria', { countries: countries.join(',').toUpperCase() })];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                            return [2 /*return*/, {
+                        if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
+                            if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                                return [2 /*return*/, {
                                     success: false,
                                     error: {
                                         type: 'creditsafe',
                                         error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
                                     },
                                 }];
-                        }
+                            }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
             });
@@ -157,16 +166,16 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies/match', __assign(__assign({}, search), { country: search.country.toUpperCase() }))];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                            return [2 /*return*/, {
+                        if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
+                            if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                                return [2 /*return*/, {
                                     success: false,
                                     error: {
                                         type: 'creditsafe',
                                         error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
                                     },
                                 }];
-                        }
+                            }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
             });
