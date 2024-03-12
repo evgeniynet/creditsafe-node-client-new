@@ -100,7 +100,7 @@ var CompanyApi = /** @class */ (function () {
                         let url = "companies/" + connectId + "?1=1";
                         let lang = options?.language || "";
                         if (lang) {
-                            url += '&language=' + lang;
+                            //url += '&language=' + lang;
                             if ("de" === lang || "DE" === lang)
                                 url += '&customData=de_reason_code::1';
                         }
