@@ -51,7 +51,7 @@ exports.AuthenticationApi = void 0;
 var AuthenticationApi = /** @class */ (function () {
     function AuthenticationApi(client, _options) {
         this.client = client;
-        this.token = undefined;
+        this.token = _options?.token || undefined;
     }
     /*
      * Function to look and see if we already have a token for this instance,
