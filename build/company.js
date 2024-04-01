@@ -101,13 +101,15 @@ var CompanyApi = /** @class */ (function () {
                         let lang = options?.language || "";
                         if (lang) {
                             //url += '&language=' + lang;
-                            if ("de" === lang || "DE" === lang)
+                            if (lang.indexOf('de') > -1 || lang.indexOf('DE') > -1)
                                 url += '&customData=de_reason_code::1';
                         }
+                        console.log("URL: ", url)
                         return [4 /*yield*/, this.client.fire('GET', url, options)];
                     }
                     case 1:
                         resp = _e.sent();
+                        //console.info('rrr!!!!',{ resp })
                         if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
                             if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                                 return [2 /*return*/, {
