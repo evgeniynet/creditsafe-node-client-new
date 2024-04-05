@@ -68,18 +68,18 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies', __assign(__assign({}, search), { countries: search.countries.join(',').toUpperCase() }))];
                     case 1:
                         resp = _e.sent();
-                        //console.info('', { resp })
-                        const errorType = resp?.payload?.error?.type ?? "";
+                        // console.info('', { resp })
+                        const errorType = resp?.payload?.error?.type || resp?.payload?.message;
                         if (errorType) {//return [2, resp.response.payload]; else
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                                return [2 /*return*/, {
-                                    success: false,
-                                    error: {
-                                        type: errorType,
-                                        error: resp?.payload?.error?.error ?? "Unknown",
-                                    },
-                                }];
-                            }
+                            return [2 /*return*/, {
+                                success: false,
+                                error: {
+                                    type: errorType,
+                                    error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
+                                },
+                            }];
+                        }
                         console.log(_e.label);
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
@@ -111,18 +111,18 @@ var CompanyApi = /** @class */ (function () {
                     }
                     case 1:
                         resp = _e.sent();
-                        //console.info('rrr!!!!',{ resp })
-                        const errorType = resp?.payload?.error?.type ?? "";
+                        // console.info('rrr!!!!', { resp })
+                        const errorType = resp?.payload?.error?.type || resp?.payload?.message;
                         if (errorType) {//return [2, resp.response.payload]; else
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                                return [2 /*return*/, {
-                                    success: false,
-                                    error: {
-                                        type: errorType,
-                                        error: resp?.payload?.error?.error ?? "Unknown",
-                                    },
-                                }];
-                            }
+                            return [2 /*return*/, {
+                                success: false,
+                                error: {
+                                    type: errorType,
+                                    error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
+                                },
+                            }];
+                        }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
             });
