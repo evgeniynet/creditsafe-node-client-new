@@ -1,6 +1,6 @@
 {
   "name": "creditsafe-node-client-new",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Node.js Client for Creditsafe Connect API",
   "keywords": [
     "creditsafe.com",
