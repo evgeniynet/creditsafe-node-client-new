@@ -106,6 +106,7 @@ export declare class CompanyApi {
     }>;
     creditReport(connectId: string, options?: {
         language?: string;
+        debug?: boolean;
         template?: string;
         customData?: string;
         callRef?: string;

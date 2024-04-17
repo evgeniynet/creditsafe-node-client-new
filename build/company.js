@@ -68,7 +68,8 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies', __assign(__assign({}, search), { countries: search.countries.join(',').toUpperCase() }))];
                     case 1:
                         resp = _e.sent();
-                        // console.info('', { resp })
+                        if (options?.debug)
+                            console.info('Response from CS API search', resp )
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
                         if (errorType) {//return [2, resp.response.payload]; else
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
@@ -111,7 +112,8 @@ var CompanyApi = /** @class */ (function () {
                     }
                     case 1:
                         resp = _e.sent();
-                        // console.info('rrr!!!!', { resp })
+                        if (options?.debug)
+                            console.info('Response from CS API creditReport', resp )
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
                         if (errorType) {//return [2, resp.response.payload]; else
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
@@ -142,13 +144,16 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies/searchcriteria', { countries: countries.join(',').toUpperCase() })];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
-                            if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                        if (options?.debug)
+                            console.info('Response from CS API searchCriteria', resp )
+                            const errorType = resp?.payload?.error?.type || resp?.payload?.message;
+                            if (errorType) {//return [2, resp.response.payload]; else
+                                //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                                 return [2 /*return*/, {
                                     success: false,
                                     error: {
-                                        type: 'creditsafe',
-                                        error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
+                                        type: errorType,
+                                        error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
                                     },
                                 }];
                             }
@@ -171,13 +176,16 @@ var CompanyApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'companies/match', __assign(__assign({}, search), { country: search.country.toUpperCase() }))];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success) return [2, resp.response.payload]; else
-                            if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                        if (options?.debug)
+                            console.info('Response from CS API matchSearch', resp )
+                            const errorType = resp?.payload?.error?.type || resp?.payload?.message;
+                            if (errorType) {//return [2, resp.response.payload]; else
+                                //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                                 return [2 /*return*/, {
                                     success: false,
                                     error: {
-                                        type: 'creditsafe',
-                                        error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
+                                        type: errorType,
+                                        error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
                                     },
                                 }];
                             }

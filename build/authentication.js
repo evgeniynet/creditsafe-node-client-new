@@ -116,17 +116,21 @@ var AuthenticationApi = /** @class */ (function () {
                         })];
                     case 1:
                         resp = _d.sent();
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                            return [2 /*return*/, {
-                                    success: false,
-                                    status: 400,
-                                    error: {
-                                        type: 'creditsafe',
-                                        error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
-                                    },
-                                }];
+                        if (options?.debug)
+                            console.info('Response from CS API getToken', resp )
+                        const errorType = resp?.payload?.error?.type || resp?.payload?.message;
+                        if (errorType) {//return [2, resp.response.payload]; else
+                            //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                                return [2 /*return*/, {
+                                success: false,
+                                status: 400,
+                                error: {
+                                    type: errorType,
+                                    error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
+                                },
+                            }];
                         }
-                        else
+                        console.log(_e.label);
                         return [2 /*return*/, __assign(__assign({}, resp.payload), { success: true, resp: resp })];
                 }
             });

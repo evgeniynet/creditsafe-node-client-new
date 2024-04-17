@@ -69,15 +69,18 @@ var PeopleApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'people', __assign(__assign({}, search), { countries: search.countries.join(',').toUpperCase() }))];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                        if (options?.debug)
+                            console.info('Response from CS API people search', resp )
+                        const errorType = resp?.payload?.error?.type || resp?.payload?.message;
+                        if (errorType) {//return [2, resp.response.payload]; else
+                            //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
-                                    success: false,
-                                    error: {
-                                        type: 'creditsafe',
-                                        error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
-                                    },
-                                }];
+                                success: false,
+                                error: {
+                                    type: errorType,
+                                    error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
+                                },
+                            }];
                         }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
@@ -99,15 +102,18 @@ var PeopleApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', "people/" + peopleId, options)];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                        if (options?.debug)
+                            console.info('Response from CS API directorReport', resp )
+                        const errorType = resp?.payload?.error?.type || resp?.payload?.message;
+                        if (errorType) {//return [2, resp.response.payload]; else
+                            //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
-                                    success: false,
-                                    error: {
-                                        type: 'creditsafe',
-                                        error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
-                                    },
-                                }];
+                                success: false,
+                                error: {
+                                    type: errorType,
+                                    error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
+                                },
+                            }];
                         }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
@@ -128,15 +134,18 @@ var PeopleApi = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.fire('GET', 'people/searchcriteria', { countries: countries.join(',').toUpperCase() })];
                     case 1:
                         resp = _e.sent();
-                        if (resp.response.success != undefined && !resp.response.success)  return [2, resp.response.payload]; else
-                        if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
+                        if (options?.debug)
+                            console.info('Response from CS API searchCriteria', resp )
+                        const errorType = resp?.payload?.error?.type || resp?.payload?.message;
+                        if (errorType) {//return [2, resp.response.payload]; else
+                            //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
-                                    success: false,
-                                    error: {
-                                        type: 'creditsafe',
-                                        error: ((_b = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _b === void 0 ? void 0 : _b.error) || ((_c = resp === null || resp === void 0 ? void 0 : resp.payload) === null || _c === void 0 ? void 0 : _c.message),
-                                    },
-                                }];
+                                success: false,
+                                error: {
+                                    type: errorType,
+                                    error: resp?.payload?.error?.error || resp?.payload?.details || "Unknown",
+                                },
+                            }];
                         }
                         return [2 /*return*/, { success: (resp && !((_d = resp.payload) === null || _d === void 0 ? void 0 : _d.error)), data: resp.payload }];
                 }
