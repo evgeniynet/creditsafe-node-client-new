@@ -1,6 +1,6 @@
 "use strict";
 var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
+    __assign = Object.assign || function (t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
             s = arguments[i];
             for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
@@ -20,8 +20,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -52,6 +52,7 @@ var AuthenticationApi = /** @class */ (function () {
     function AuthenticationApi(client, _options) {
         this.client = client;
         this.token = _options?.token || undefined;
+        this.debug = _options?.debug || false;
     }
     /*
      * Function to look and see if we already have a token for this instance,
@@ -111,17 +112,17 @@ var AuthenticationApi = /** @class */ (function () {
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0: return [4 /*yield*/, this.client.fire('POST', 'authenticate', undefined, {
-                            username: this.client.username,
-                            password: this.client.password,
-                        })];
+                        username: this.client.username,
+                        password: this.client.password,
+                    })];
                     case 1:
                         resp = _d.sent();
-                        if (options?.debug)
-                            console.info('Response from CS API getToken', resp )
+                        if (this.debug)
+                            console.info('Response from CS API getToken', resp)
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
                         if (errorType) {//return [2, resp.response.payload]; else
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
-                                return [2 /*return*/, {
+                            return [2 /*return*/, {
                                 success: false,
                                 status: 400,
                                 error: {
@@ -130,7 +131,8 @@ var AuthenticationApi = /** @class */ (function () {
                                 },
                             }];
                         }
-                        console.log(_e.label);
+                        if (this.debug)
+                            console.log(_d.label);
                         return [2 /*return*/, __assign(__assign({}, resp.payload), { success: true, resp: resp })];
                 }
             });

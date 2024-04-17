@@ -6,6 +6,7 @@ export interface CreditsafeOptions {
     host?: string;
     username?: string;
     password?: string;
+    debug?:boolean;
 }
 export interface CreditsafeError {
     type: string;

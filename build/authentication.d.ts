@@ -7,6 +7,7 @@ export interface CreditsafeAuth {
 export declare class AuthenticationApi {
     client: Creditsafe;
     token?: string;
+    debug?: boolean;
     constructor(client: Creditsafe, _options?: CreditsafeOptions);
     checkToken(): Promise<CreditsafeAuth>;
     resetToken(): Promise<CreditsafeAuth>;
