@@ -72,7 +72,7 @@ var CompanyApi = /** @class */ (function () {
                         if (this.debug)
                             console.info('Response from CS API search', resp)
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
-                        if (errorType) {//return [2, resp.response.payload]; else
+                        if (resp?.response?.payload?.error?.error) { resp.response.payload.error.error = resp.response?.payload?.error?.type;  return [2, resp.response.payload];} else if (errorType) {
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
                                 success: false,
@@ -117,7 +117,7 @@ var CompanyApi = /** @class */ (function () {
                         if (this.debug)
                             console.info('Response from CS API creditReport', resp)
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
-                        if (errorType) {//return [2, resp.response.payload]; else
+                        if (resp?.response?.payload?.error?.error) { resp.response.payload.error.error = resp.response?.payload?.error?.type;  return [2, resp.response.payload];} else if (errorType) {
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
                                 success: false,
@@ -149,7 +149,7 @@ var CompanyApi = /** @class */ (function () {
                         if (this.debug)
                             console.info('Response from CS API searchCriteria', resp )
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
-                        if (errorType) {//return [2, resp.response.payload]; else
+                        if (resp?.response?.payload?.error?.error) { resp.response.payload.error.error = resp.response?.payload?.error?.type;  return [2, resp.response.payload];} else if (errorType) {
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
                                 success: false,
@@ -181,7 +181,7 @@ var CompanyApi = /** @class */ (function () {
                         if (this.debug)
                             console.info('Response from CS API matchSearch', resp )
                         const errorType = resp?.payload?.error?.type || resp?.payload?.message;
-                        if (errorType) {//return [2, resp.response.payload]; else
+                        if (resp?.response?.payload?.error?.error) { resp.response.payload.error.error = resp.response?.payload?.error?.type;  return [2, resp.response.payload];} else if (errorType) {
                             //if (((_a = resp === null || resp === void 0 ? void 0 : resp.response) === null || _a === void 0 ? void 0 : _a.status) >= 400) {
                             return [2 /*return*/, {
                                 success: false,
